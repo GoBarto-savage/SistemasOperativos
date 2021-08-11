@@ -4,7 +4,7 @@
 
 Colaboradores:
 * :alien: **Gonzalo Guaimas** @GoBarto-savage
-* :robot: **Nicolas Hussein** @T0w3r
+* :robot: **Nicolas Hussein** QAlejoTorres2001
 * :space_invader: **Alejo Torres**
 
 
