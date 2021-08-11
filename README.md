@@ -3,8 +3,8 @@
 **Repositorio dedicado a la implementacion y resolucion de problemas de algoritmia y programacion concurrente**
 
 Colaboradores:
-* :alien: **Gonzalo Guaimas**
-* :robot: **Nicolas Hussein**
+* :alien: **Gonzalo Guaimas** 
+* :robot: **Nicolas Hussein** 
 * :space_invader: **Alejo Torres**
 
 
