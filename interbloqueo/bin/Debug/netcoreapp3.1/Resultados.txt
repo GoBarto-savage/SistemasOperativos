@@ -1,6 +1,14 @@
 ---CONFIGURACION DEL GRAFO---
 
+El vertice R quiere a:
+
+A, 
+
 El vertice A quiere a:
+
+S, 
+
+El vertice C quiere a:
 
 S, 
 
@@ -40,31 +48,15 @@ El vertice T quiere a:
 
 E, 
 
+El vertice B quiere a:
+
+T, 
+
 ---RECORRIDOS---
 
-Recorrido del nodo A
-A	S
-Recorrido del nodo W
-W	F		S
-Recorrido del nodo F
-F	S
 Recorrido del nodo S
 S
 Recorrido del nodo D
 D	S	T		E			V				G					U						D
 						¡INTERBLOQUEO DETECTADO! 
 Recorrido del nodo U
-U	D		S		T			E				V					G						U
-						¡INTERBLOQUEO DETECTADO! 
-Recorrido del nodo G
-G	U		D			S			T				E					V						G
-						¡INTERBLOQUEO DETECTADO! 
-Recorrido del nodo V
-V	G		U			D				S				T					E						V
-						¡INTERBLOQUEO DETECTADO! 
-Recorrido del nodo E
-E	V		G			U				D					S					T						E
-						¡INTERBLOQUEO DETECTADO! 
-Recorrido del nodo T
-T	E		V			G				U					D						S						T
-						¡INTERBLOQUEO DETECTADO! 
