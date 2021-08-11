@@ -14,7 +14,7 @@ namespace interbloqueo
             //Instancio todos los vertices
             List<Vertice> todos_verticesArray = new List<Vertice>();
 
-
+            //Almaceno todos los grados en una lista
             Vertice oVertice_R = new Vertice("R");
             Vertice oVertice_A = new Vertice("A");
             Vertice oVertice_C = new Vertice("C");
@@ -30,7 +30,7 @@ namespace interbloqueo
             Vertice oVertice_B = new Vertice("B");
 
             //Almaceno todos los grados en una lista
-            Vertice[] todos_vertices = new Vertice[13] { oVertice_R, oVertice_A, oVertice_C, oVertice_W, oVertice_F, oVertice_S, oVertice_D, oVertice_U, oVertice_G, oVertice_V, oVertice_E, oVertice_T, oVertice_B };
+            //Vertice[] todos_vertices = new Vertice[13] { oVertice_R, oVertice_A, oVertice_C, oVertice_W, oVertice_F, oVertice_S, oVertice_D, oVertice_U, oVertice_G, oVertice_V, oVertice_E, oVertice_T, oVertice_B };
 
             todos_verticesArray.Add(oVertice_R);
             todos_verticesArray.Add(oVertice_A);
@@ -76,43 +76,58 @@ namespace interbloqueo
             // "U" QUIERE A "D"
             oVertice_U.Aristas.Add(oVertice_D);
 
-            foreach (Vertice vertice in todos_vertices)
+            //listaado sin modificar
+            string salida = "";
+            for (int i = 0; i < todos_verticesArray.Count; i++)
+            {
+                salida += "|" + todos_verticesArray[i].Valor;
+            }
+            Console.WriteLine(salida);
+
+            for (int i = 0; i < todos_verticesArray.Count; i++)
             {
                 bool es_punta = true;
-                Vertice punta = vertice;
-                foreach (Vertice vertice2 in todos_vertices)
+                Vertice punta = todos_verticesArray[i];
+                for (int j = 0; j < todos_verticesArray.Count; j++)
                 {
-                    if (vertice != vertice2)
+                    if (todos_verticesArray[i] != todos_verticesArray[j])
                     {
-                        foreach (var arista in vertice2.Aristas)
+                        foreach (var arista in todos_verticesArray[j].Aristas)
                         {
-                            if (vertice.Valor == arista.Valor)
+                            if (todos_verticesArray[i].Valor == arista.Valor)
                             {
-                                //si es punta no la incorporo al array list
-                                todos_verticesArray.Remove(vertice);
                                 es_punta = false;
                             }
                             else
                             {
-                              
+
                             }
                         }
 
                     }
                 }
-                if (es_punta)
+                if (es_punta)   //Para Optimizar, debo sacar las puntas del listado
                 {
-                    Console.WriteLine(vertice.Valor + " Es PUNTA");
-                }
 
+                    Console.WriteLine(todos_verticesArray[i].Valor + " Es PUNTA");
+                    todos_verticesArray.Remove(todos_verticesArray[i]);
+                }
             }
+
+            //listado modificado
+            string salida2 = "";
+            for (int i = 0; i < todos_verticesArray.Count; i++)
+            {
+                salida2 += "|" + todos_verticesArray[i].Valor;
+            }
+            Console.WriteLine(salida2);
 
 
             using (StreamWriter writetext = new StreamWriter(System.IO.Path.GetFullPath("Resultados.txt")))
             {
                 writetext.WriteLine("---CONFIGURACION DEL GRAFO---" + Environment.NewLine);
 
-                foreach (Vertice vertice in todos_vertices)
+                foreach (Vertice vertice in todos_verticesArray)
                 {
                     writetext.WriteLine("El vertice" + " " + vertice.Valor + " " + "quiere a:" + Environment.NewLine);
 
@@ -140,22 +155,19 @@ namespace interbloqueo
             Desmarcar_todo(todos_vertices);
              */
 
-
             //Si queremos recorrer ABSOLUTAMENTE TODOS LOS NODOS podemos hacerlo asi:
             File.AppendAllText(System.IO.Path.GetFullPath("Resultados.txt"), "---RECORRIDOS---" + Environment.NewLine);
 
-            for (int i = 0; i < todos_verticesArray.Count; i++)
-            {
-                Console.WriteLine(todos_verticesArray[i].Valor);
-                
-            }
+            string asd = "";
 
             for (int i=0;i< todos_verticesArray.Count; i++)
             {
                 Console.WriteLine("\b" + "Recorrido del nodo " + todos_verticesArray[i].Valor);
                 File.AppendAllText(System.IO.Path.GetFullPath("Resultados.txt"), Environment.NewLine + "Recorrido del nodo " + todos_verticesArray[i].Valor + Environment.NewLine);
+                
+                Desmarcar_todo(todos_verticesArray);
                 Camino(todos_verticesArray[i]);
-                Desmarcar_todo(todos_vertices);
+                
             }
             
             /*
@@ -171,7 +183,7 @@ namespace interbloqueo
 
 
 
-        public static void Desmarcar_todo(Vertice[] vertices)
+        public static void Desmarcar_todo(List<Vertice> vertices)
         {
             foreach (Vertice v in vertices)
             {
@@ -199,6 +211,7 @@ namespace interbloqueo
                 File.AppendAllText(System.IO.Path.GetFullPath("Resultados.txt"), sangria + oVertice.Valor + Environment.NewLine);
                 File.AppendAllText(System.IO.Path.GetFullPath("Resultados.txt"), sangria + "¡INTERBLOQUEO DETECTADO! ");
             }
+            
         }
     }
 }
