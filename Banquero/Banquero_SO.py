@@ -13,12 +13,15 @@ def check_not_done(Procesos):
     return False
 
 
-def printProc(Procesos,file):
+def printProc(Procesos, file):
     for proceso in Procesos:
         if(not proceso.termino):
             print(
                 f"El proceso {proceso.nombre} tiene asignado{proceso.asignado} y requiere {proceso.requerido}\n")
-            file.writelines( f"El proceso {proceso.nombre} tiene asignado{proceso.asignado} y requiere {proceso.requerido} \n")
+            file.writelines(
+                f"El proceso {proceso.nombre} tiene asignado{proceso.asignado} y requiere {proceso.requerido} \n")
+
+
 # 4rec asignados + n disp
 Procesos = [Proceso(3, 1, 'A'),
             Proceso(2, 1, 'B'),
@@ -31,14 +34,17 @@ Procesos = [Proceso(3, 1, 'A'),
 recursos_disponibles = 3
 
 bloqueo = False
-with open("Resultados.txt","w") as file:
+with open("Resultados.txt", "w") as file:
     while(check_not_done(Procesos) and not bloqueo):
-        printProc(Procesos,file)
+
+        printProc(Procesos, file)
+
         for proceso in Procesos:
             bloqueo = True
             print(f"recursos disponibles: {recursos_disponibles}")
             file.writelines(f"recursos disponibles: {recursos_disponibles} \n")
-            if(proceso.requerido <= recursos_disponibles and proceso.termino == False):
+
+            if(proceso.requerido <= recursos_disponibles and not proceso.termino):
                 bloqueo = False
                 recursos_disponibles += proceso.asignado
                 proceso.requerido = 0
