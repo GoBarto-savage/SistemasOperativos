@@ -17,9 +17,9 @@ def printProc(Procesos, file):
     for proceso in Procesos:
         if(not proceso.termino):
             print(
-                f"El proceso {proceso.nombre} tiene asignado{proceso.asignado} y requiere {proceso.requerido}\n")
+                f"El proceso {proceso.nombre} tiene asignado {proceso.asignado} y requiere {proceso.requerido}\n")
             file.writelines(
-                f"El proceso {proceso.nombre} tiene asignado{proceso.asignado} y requiere {proceso.requerido} \n")
+                f"El proceso {proceso.nombre} tiene asignado {proceso.asignado} y requiere {proceso.requerido} \n")
 
 
 # 4rec asignados + n disp
