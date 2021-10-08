@@ -70,6 +70,11 @@ namespace ReadersWriters
 
                 _mutexes[index].ReleaseMutex();
                 Thread.Sleep(1500);
+
+                /*PARA HACERLO CON TPOS VARIABLES: */
+                //Random tpoble = new Random();  
+                //int _tpovble =tpoble.Next(1000,2000);
+                //Thread.Sleep();
             }
 
             Console.WriteLine($"El Write {index} se esta ejecutando...");
@@ -102,6 +107,10 @@ namespace ReadersWriters
                 counter++;
                 _mutexes[index].ReleaseMutex();
                 Thread.Sleep(1500);
+                /*PARA HACERLO CON TPOS VARIABLES: */
+                //Random tpoble = new Random();  
+                //int _tpovble =tpoble.Next(1000,2000);
+                //Thread.Sleep();
             }
         }
     
