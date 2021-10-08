@@ -70,7 +70,6 @@ namespace ReadersWriters
 
                 _mutexes[index].ReleaseMutex();
                 Thread.Sleep(1500);
-                //Console.WriteLine($"El Write {index} se esta ejecutando...");
             }
 
             Console.WriteLine($"El Write {index} se esta ejecutando...");
