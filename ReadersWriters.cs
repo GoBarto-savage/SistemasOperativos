@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
-
+using System.Text;
 namespace ReadersWriters
 {
     class ReadersWriters
@@ -28,13 +28,13 @@ namespace ReadersWriters
             _writters = new Thread[3];
             _counterWriters = 0;
             _counterReaders = 0;
-
             _fileNames = new string[3] { "archivo1.txt", "archivo2.txt", "archivo3.txt" };
-            _str = new string[3] { "gonza ", "alejo", "nico" };
+            _str = new string[3] { RandomString(),RandomString(), RandomString() };
         }
 
         public void Proccess()
         {
+            Console.WriteLine();
             _temp = new Mutex();
             for (var i = 0; i < 3; i++)
             {
@@ -44,7 +44,6 @@ namespace ReadersWriters
                 _writters[i] = new Thread(ThreadReader);
                 _writters[i].Start();
             }
-
             Console.ReadKey();
         }
 
@@ -65,6 +64,7 @@ namespace ReadersWriters
 
                 using (var writter = new StreamWriter(_fileNames[index]))
                 {
+                    _str[index] = RandomString();
                     writter.WriteLine(_str[index]);
                 }
 
@@ -101,9 +101,24 @@ namespace ReadersWriters
                 Console.WriteLine($"Se escribe {str} por  {counter} vez");
                 counter++;
                 _mutexes[index].ReleaseMutex();
-
                 Thread.Sleep(1500);
             }
         }
-    }
+    
+       public static string RandomString (){
+            StringBuilder str_build = new StringBuilder();  
+            Random random = new Random();  
+            char letter;  
+            Random length = new Random();  
+            int _length =length.Next(3,10);
+            for (int i = 0; i < _length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str_build.Append(letter);  
+            }  
+            return str_build.ToString();
+        }
+    } 
 }
