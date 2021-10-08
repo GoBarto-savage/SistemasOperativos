@@ -72,9 +72,9 @@ namespace ReadersWriters
                 Thread.Sleep(1500);
 
                 /*PARA HACERLO CON TPOS VARIABLES: */
-                //Random tpoble = new Random();  
+                //Random tpovble = new Random();  
                 //int _tpovble =tpoble.Next(1000,2000);
-                //Thread.Sleep();
+                //Thread.Sleep(_tpovble);
             }
 
             Console.WriteLine($"El Write {index} se esta ejecutando...");
