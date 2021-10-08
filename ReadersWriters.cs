@@ -29,8 +29,8 @@ namespace ReadersWriters
             _counterWriters = 0;
             _counterReaders = 0;
 
-            _fileNames = new string[3] { "file1", "file2", "file3" };
-            _str = new string[3] { "caca", "pedo", "pis" };
+            _fileNames = new string[3] { "archivo1.txt", "archivo2.txt", "archivo3.txt" };
+            _str = new string[3] { "gonza ", "alejo", "nico" };
         }
 
         public void Proccess()
@@ -55,7 +55,7 @@ namespace ReadersWriters
             index = _counterWriters;
             _counterWriters++;
             _temp.ReleaseMutex();
-            Console.WriteLine($"Writer {_counterWriters}");
+            Console.WriteLine($"Se ejecuta el Writer {_counterWriters}");
 
             var counter = 0;
 
@@ -70,9 +70,10 @@ namespace ReadersWriters
 
                 _mutexes[index].ReleaseMutex();
                 Thread.Sleep(1500);
+                //Console.WriteLine($"El Write {index} se esta ejecutando...");
             }
 
-            Console.WriteLine("$Write {index}");
+            Console.WriteLine($"El Write {index} se esta ejecutando...");
         }
 
         private void ThreadReader()
@@ -98,8 +99,7 @@ namespace ReadersWriters
                         str += reader.ReadLine();
                     }
                 }
-
-                Console.WriteLine($"{str} {counter}");
+                Console.WriteLine($"Se escribe {str} por  {counter} vez");
                 counter++;
                 _mutexes[index].ReleaseMutex();
 
