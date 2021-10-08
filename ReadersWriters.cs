@@ -108,9 +108,9 @@ namespace ReadersWriters
                 _mutexes[index].ReleaseMutex();
                 Thread.Sleep(1500);
                 /*PARA HACERLO CON TPOS VARIABLES: */
-                //Random tpoble = new Random();  
+                //Random tpovble = new Random();  
                 //int _tpovble =tpoble.Next(1000,2000);
-                //Thread.Sleep();
+                //Thread.Sleep(_tpovble);
             }
         }
     
